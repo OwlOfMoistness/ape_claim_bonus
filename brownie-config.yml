@@ -1,5 +1,5 @@
 networks:
-    default: development
+    default: mainnet-fork
 
 dependencies:
     - OpenZeppelin/openzeppelin-contracts@4.0.0-rc.0
