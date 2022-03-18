@@ -34,3 +34,32 @@ def manager(ApeClaimBonusManager, minter):
 def claimer(ApeClaimBonus, manager, minter):
     return ApeClaimBonus.deploy(manager, {'from':minter})
 
+
+@pytest.fixture()
+def alpha_mock(MockNft, minter):
+    return MockNft.deploy("ape", "BAYC", {'from':minter})
+
+@pytest.fixture()
+def beta_mock(MockNft, minter):
+    return MockNft.deploy("mutant", "mayc", {'from':minter})
+
+@pytest.fixture()
+def gamma_mock(MockNft, minter):
+    return MockNft.deploy("doge", "BAKC", {'from':minter})
+
+@pytest.fixture()
+def ape_mock(TokenNft, minter):
+    return TokenNft.deploy({'from':minter})
+
+
+@pytest.fixture()
+def claim_ape_mock(ClaimGrapeMock, alpha_mock, beta_mock, gamma_mock, ape_mock, minter):
+    return ClaimGrapeMock.deploy(alpha_mock, beta_mock, gamma_mock, ape_mock, {'from':minter})
+
+@pytest.fixture()
+def manager_mock(ApeClaimBonusManager, claim_ape_mock, alpha_mock, beta_mock, gamma_mock, ape_mock, minter):
+    return ApeClaimBonusManager.deploy(ape_mock, claim_ape_mock, alpha_mock, beta_mock, gamma_mock, {'from':minter})
+
+@pytest.fixture()
+def claimer_mock(ApeClaimBonus, manager_mock, claim_ape_mock, alpha_mock, beta_mock, gamma_mock, ape_mock, minter):
+    return ApeClaimBonus.deploy(manager_mock, ape_mock, claim_ape_mock, alpha_mock, beta_mock, gamma_mock, {'from':minter})
