@@ -40,9 +40,9 @@ def test_alpha_claim(manager, ape, alpha, gamma, minter, claimer, accounts):
 	assert gamma.balanceOf(gamma_owner) == go_gamma_bal
 	assert alpha.balanceOf(alpha_owner) == ao_alpha_bal - 1
 	assert alpha.balanceOf(manager) == 1
-	assert ape.balanceOf(alpha_owner) - ao_bal == len(alphas[:9]) * (Wei('10094 ether') + Wei('856 ether') * 15 // 100)
-	assert ape.balanceOf(gamma_owner) - go_bal == len(gammas[:9]) * (Wei('856 ether') * 70 // 100)
-	assert ape.balanceOf(manager) == len(gammas[:9]) * (Wei('856 ether') * 15 // 100)
+	assert ape.balanceOf(alpha_owner) - ao_bal == len(alphas[:9]) * (Wei('10094 ether') + Wei('856 ether') * 45 // 100)
+	assert ape.balanceOf(gamma_owner) - go_bal == len(gammas[:9]) * (Wei('856 ether') * 45 // 100)
+	assert ape.balanceOf(manager) == len(gammas[:9]) * (Wei('856 ether') * 10 // 100)
 
 
 def test_beta_claim(manager, ape, beta, gamma, minter, claimer, accounts):
@@ -74,9 +74,9 @@ def test_beta_claim(manager, ape, beta, gamma, minter, claimer, accounts):
 	manager.depositBeta(betas[6:], {'from':beta_owner})
 	assert gamma.balanceOf(gamma_owner) == go_gamma_bal
 	assert beta.balanceOf(beta_owner) == ao_beta_bal
-	assert ape.balanceOf(beta_owner) - bo_bal == len(betas) * (Wei('2042 ether') + Wei('856 ether') * 15 // 100)
-	assert ape.balanceOf(gamma_owner) - go_bal == len(gammas) * (Wei('856 ether') * 70 // 100)
-	assert ape.balanceOf(manager) == len(gammas) * (Wei('856 ether') * 15 // 100)
+	assert ape.balanceOf(beta_owner) - bo_bal == len(betas) * (Wei('2042 ether') + Wei('856 ether') * 45 // 100)
+	assert ape.balanceOf(gamma_owner) - go_bal == len(gammas) * (Wei('856 ether') * 45 // 100)
+	assert ape.balanceOf(manager) == len(gammas) * (Wei('856 ether') * 10 // 100)
 
 def test_gamma_claim(manager, ape, alpha, beta, gamma, minter, claimer, accounts):
 	caller = {'from':minter}
@@ -127,7 +127,7 @@ def test_gamma_claim(manager, ape, alpha, beta, gamma, minter, claimer, accounts
 	manager.withdrawGamma(gammas[6:8], {'from':gamma_owner})
 	assert gamma.balanceOf(gamma_owner) == go_gamma_bal
 
-	assert ape.balanceOf(alpha_owner) - ao_bal == len(alphas[:3]) * (Wei('10094 ether') + Wei('856 ether') * 15 // 100)
-	assert ape.balanceOf(beta_owner) - bo_bal == len(betas[:3]) * (Wei('2042 ether') + Wei('856 ether') * 15 // 100)
-	assert ape.balanceOf(gamma_owner) - go_bal == len(gammas[:6]) * (Wei('856 ether') * 70 // 100)
-	assert ape.balanceOf(manager) == len(gammas[:6]) * (Wei('856 ether') * 15 // 100)
+	assert ape.balanceOf(alpha_owner) - ao_bal == len(alphas[:3]) * (Wei('10094 ether') + Wei('856 ether') * 45 // 100)
+	assert ape.balanceOf(beta_owner) - bo_bal == len(betas[:3]) * (Wei('2042 ether') + Wei('856 ether') * 45 // 100)
+	assert ape.balanceOf(gamma_owner) - go_bal == len(gammas[:6]) * (Wei('856 ether') * 45 // 100)
+	assert ape.balanceOf(manager) == len(gammas[:6]) * (Wei('856 ether') * 10 // 100)

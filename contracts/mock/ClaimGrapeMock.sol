@@ -1,11 +1,12 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.2;
 
+import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/IERC721Enumerable.sol";
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
 
-contract ClaimGrapeMock {
+contract ClaimGrapeMock is Ownable {
 	
 	uint256 public constant ALPHA_DISTRIBUTION_AMOUNT = 10094 ether;
 	uint256 public constant BETA_DISTRIBUTION_AMOUNT = 2042 ether;
@@ -26,6 +27,7 @@ contract ClaimGrapeMock {
 		gamma = IERC721Enumerable(g);
 		grapesToken = IERC20(token);
 	}
+
 
 	function claimTokens() external {
         require((beta.balanceOf(msg.sender) > 0 || alpha.balanceOf(msg.sender) > 0), "Nothing to claim");

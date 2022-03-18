@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.2;
 
+import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/IERC721Enumerable.sol";
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
@@ -11,7 +12,8 @@ interface IGrape {
 	function gammaClaimed(uint256) external view returns(bool);
 }
 
-contract ApeClaimBonus {
+contract ApeClaimBonus is Ownable {
+
 	IGrape public constant GRAPE = IGrape(0x025C6da5BD0e6A5dd1350fda9e3B6a614B205a1F);
 	IERC20 public constant APE = IERC20(0x4d224452801ACEd8B2F0aebE155379bb5D594381);
 	IERC721Enumerable public constant ALPHA = IERC721Enumerable(0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D);
@@ -25,6 +27,11 @@ contract ApeClaimBonus {
 		ALPHA.setApprovalForAll(_manager, true);
 		BETA.setApprovalForAll(_manager, true);
 		GAMMA.setApprovalForAll(_manager, true);
+	}
+
+    // In the case a user sends an asset directly to the contract...
+	function rescueAsset(address _asset, uint256 _tokenId, address _recipient) external onlyOwner {
+		IERC721Enumerable(_asset).transferFrom(address(this), _recipient, _tokenId);
 	}
 
 	function claim() external {

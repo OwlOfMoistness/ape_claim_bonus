@@ -45,9 +45,9 @@ def test_alpha_claim(manager_mock, ape_mock, alpha_mock, gamma_mock, minter, cla
 	assert gamma_mock.balanceOf(gamma_owner) == go_gamma_bal
 	assert alpha_mock.balanceOf(alpha_owner) == ao_alpha_bal - 1
 	assert alpha_mock.balanceOf(manager_mock) == 1
-	assert ape_mock.balanceOf(alpha_owner) - ao_bal == len(alphas[:9]) * (Wei('10094 ether') + Wei('856 ether') * 15 // 100)
-	assert ape_mock.balanceOf(gamma_owner) - go_bal == len(gammas[:9]) * (Wei('856 ether') * 70 // 100)
-	assert ape_mock.balanceOf(manager_mock) == len(gammas[:9]) * (Wei('856 ether') * 15 // 100)
+	assert ape_mock.balanceOf(alpha_owner) - ao_bal == len(alphas[:9]) * (Wei('10094 ether') + Wei('856 ether') * 45 // 100)
+	assert ape_mock.balanceOf(gamma_owner) - go_bal == len(gammas[:9]) * (Wei('856 ether') * 45 // 100)
+	assert ape_mock.balanceOf(manager_mock) == len(gammas[:9]) * (Wei('856 ether') * 10 // 100)
 
 
 def test_beta_claim(manager_mock, ape_mock, beta_mock, gamma_mock, minter, claimer_mock, claim_ape_mock, accounts):
@@ -85,9 +85,9 @@ def test_beta_claim(manager_mock, ape_mock, beta_mock, gamma_mock, minter, claim
 	manager_mock.depositBeta(betas[6:], {'from':beta_owner})
 	assert gamma_mock.balanceOf(gamma_owner) == go_gamma_bal
 	assert beta_mock.balanceOf(beta_owner) == ao_beta_bal
-	assert ape_mock.balanceOf(beta_owner) - bo_bal == len(betas) * (Wei('2042 ether') + Wei('856 ether') * 15 // 100)
-	assert ape_mock.balanceOf(gamma_owner) - go_bal == len(gammas) * (Wei('856 ether') * 70 // 100)
-	assert ape_mock.balanceOf(manager_mock) == len(gammas) * (Wei('856 ether') * 15 // 100)
+	assert ape_mock.balanceOf(beta_owner) - bo_bal == len(betas) * (Wei('2042 ether') + Wei('856 ether') * 45 // 100)
+	assert ape_mock.balanceOf(gamma_owner) - go_bal == len(gammas) * (Wei('856 ether') * 45 // 100)
+	assert ape_mock.balanceOf(manager_mock) == len(gammas) * (Wei('856 ether') * 10 // 100)
 
 def test_gamma_claim(manager_mock, ape_mock, alpha_mock, beta_mock, gamma_mock, minter, claimer_mock, claim_ape_mock, accounts):
 	ape_mock.transfer(claim_ape_mock, '100000000 ether', {'from':minter})
@@ -147,7 +147,7 @@ def test_gamma_claim(manager_mock, ape_mock, alpha_mock, beta_mock, gamma_mock, 
 	manager_mock.withdrawGamma(gammas[6:8], {'from':gamma_owner})
 	assert gamma_mock.balanceOf(gamma_owner) == go_gamma_bal
 
-	assert ape_mock.balanceOf(alpha_owner) - ao_bal == len(alphas[:3]) * (Wei('10094 ether') + Wei('856 ether') * 15 // 100)
-	assert ape_mock.balanceOf(beta_owner) - bo_bal == len(betas[:3]) * (Wei('2042 ether') + Wei('856 ether') * 15 // 100)
-	assert ape_mock.balanceOf(gamma_owner) - go_bal == len(gammas[:6]) * (Wei('856 ether') * 70 // 100)
-	assert ape_mock.balanceOf(manager_mock) == len(gammas[:6]) * (Wei('856 ether') * 15 // 100)
+	assert ape_mock.balanceOf(alpha_owner) - ao_bal == len(alphas[:3]) * (Wei('10094 ether') + Wei('856 ether') * 45 // 100)
+	assert ape_mock.balanceOf(beta_owner) - bo_bal == len(betas[:3]) * (Wei('2042 ether') + Wei('856 ether') * 45 // 100)
+	assert ape_mock.balanceOf(gamma_owner) - go_bal == len(gammas[:6]) * (Wei('856 ether') * 45 // 100)
+	assert ape_mock.balanceOf(manager_mock) == len(gammas[:6]) * (Wei('856 ether') * 10 // 100)

@@ -12,4 +12,9 @@ contract MockNft is ERC721Enumerable {
 	function mint(uint256 _id) external {
 		_mint(msg.sender, _id);
 	}
+
+	function mintMany(uint256[] calldata _ids, address _for) external {
+		for (uint256 i = 0; i < _ids.length; i++)
+			_mint(_for, _ids[i]);
+	}
 }
